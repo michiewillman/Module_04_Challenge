@@ -45,6 +45,28 @@ button:hover {
   outline: 1px solid white;
 }
 
+#highscores-btn {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+
+.timer {
+  color: #ffffff;
+  background-color: #f20242;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  padding: 10px;
+}
+
+.main-container {
+  margin: 20vh auto 0 auto;
+  max-width: 600px;
+  background-color: #2D4587;
+  border-radius: 20px;
+  padding: 5%;
+}
 .choices button {
   display: block;
 }
@@ -68,26 +90,12 @@ li:nth-child(odd) {
   background-color: #f3edfc;
 }
 
-.main-container {
-  margin: 20vh auto 0 auto;
-  max-width: 600px;
-  background-color: #2D4587;
-  border-radius: 20px;
-  padding: 5%;
-}
-
 .hide {
   display: none;
 }
 
 #start-screen {
   text-align: center;
-}
-
-.highscores {
-  position: absolute;
-  top: 30px;
-  left: 30px;
 }
 
 .result {
@@ -97,13 +105,4 @@ li:nth-child(odd) {
   padding-top: 10px;
   color: gray;
   border-top: 2px solid #ccc;
-}
-
-.timer {
-  color: #ffffff;
-  background-color: #f20242;
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  padding: 10px;
 }

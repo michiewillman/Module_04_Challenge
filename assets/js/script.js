@@ -1,17 +1,19 @@
 var timer = document.getElementById("timer");
 var questionTitle = document.getElementById("question-title");
+var questionContainer = document.getElementById("questions");
 var choiceList = document.getElementById("choices");
 var startButton = document.getElementById("start-button");
 var clearButton = document.getElementById("clear");
 var resultText = document.getElementById("result");
 
 var finalScore = document.getElementById("final-score");
-var initials = document.getElementById("initials");
+var initialsInput = document.getElementById("initials-here");
 var submitButton = document.getElementById("submit");
 
 var scoreTotal = ""; 
-var userChoice = ; // user selected an answer
-var allAnswers = ; // the current list of answers the page is on?
+var userChoice = ; // TODO: user selected an answer
+var correctChoice = ; // TODO: the real correct answer
+var allAnswers = ; // TODO: the current list of answers the page is on?
 
 startButton.addEventListener("click", playQuiz);
 
@@ -31,8 +33,8 @@ function setTimer() {
       // Stops execution of action at set interval
       clearInterval(timerInterval);
 
-      // End quiz
-      // Display score
+      // TODO: End quiz
+      // TODO: Display score
 
     }
 
@@ -79,20 +81,23 @@ var fiveAnswers = {
   answerFour: "console.log"
 }
 
-// 
 
-// Create ol for answers
+// TODO: Create ol for answers
 
 for (var i = 0, i > allAnswers.length, i++) {
-  // create li for each answer in the list
-  // append child li to the question or "ol"
+  // TODO: create li for each answer in the list
+  // TODO: append child li to the question or "ol"
 }
 
-// Swap questions and answers out for each screen
-// Figure out how to navigate between the screens
+
+// TODO: Display first list
+// TODO: Listen for a user answer click on an li
+// TODO: Check if answer is the correct li
+// TODO: Swap out current list with the next list
+
 
 function checkAnswer() {
-  if (userChoice === true) {
+  if (userChoice === correctChoice) {
     answerCorrect();
     moveToNext();
   } else {
@@ -100,29 +105,59 @@ function checkAnswer() {
   }
 }
 
+function resultMessageTimer() {
+  // Displays "CORRECT" or "WRONG" message for 3 seconds
+  var messageTime = 3;
+  var messageTimer = setInterval(function() {
+    messageTime--;
+
+    // TODO: Display either answerCorrect or answerWrong messages
+
+    // After 3 seconds, message will disapear
+    if (messageTime === 0) {
+      resultText.style.display = "none";
+    }
+
+  }, 1000);
+}
+
 function answerCorrect() {
   resultText.textContent = "CORRECT!";
-  scoreTotal++;
+  scoreTotal + 20;
 }
 
 function answerWrong() {
   resultText.textContent = "Wrong Answer. Try again.";
-  scoreTotal--;
   secondsLeft - 15;
 }
 
 function moveToNext() {
-
+  // TODO: Swap current list with next set
 }
 
 function setHighScores() {
-
+  // Set initials of user
+  localStorage.setItem("initials", initialsInput.value);
+  // Set score of user
+  localStorage.setItem("score", scoreTotal);
+  // Take user to high scores page upon score submition
+  submitButton.addEventListener("submit", function() {
+    // TODO: take user directly to Top Scores page
+  });
 }
 
-
-// Allow user to enter their initials
-// Display the score and initials below
+function renderHighScores() {
+  // Pull previous initials from storage
+  var initials = localStorage.getItem("initials");
+  // Pull previous scores from storage
+  var scores = localStorage.getItem("score");
+  // TODO: Display initials & scores
+  for (j = 0, , j++) { // for every stored user highscore
+    document.createElement("li");
+    // TODO: append child to ol "highscores"
+  }
+}
 
 clearButton.addEventListener("click", function() {
   localStorage.clear();
-})
+});
