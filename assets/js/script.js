@@ -1,18 +1,13 @@
 var time = document.getElementById("time");
 var questionTitle = document.getElementById("question-title");
 var questionContainer = document.getElementById("questions");
-var resultText = document.getElementById("result");
 var scoresList = document.getElementById("highscores");
 
 var allStoredScores = [];
-var userScore = ""; 
+var userScore = 0; 
+var timer;
 var secondsLeft;
-var isEnded;
 var questionIndex = 0;
-
-function init() {
-  renderHighScores();
-}
 
 function writeQuestion() {
   // Sets answer values
@@ -34,30 +29,34 @@ function writeQuestion() {
   answer3.textContent = currentQuestion.a3;
   answer4.textContent = currentQuestion.a4;
 
-  // When user clicks on an answer, write next question
-  var anyAnswer = document.querySelectorAll(".answer");
-  anyAnswer.addEventListener("click", writeQuestion);
-
   // Add to index at the end so it cycles through questions
   questionIndex++;
+
+  // When user clicks on an answer, write next question
+  choice1.addEventListener("click", writeQuestion);
+  choice2.addEventListener("click", writeQuestion);
+  choice3.addEventListener("click", writeQuestion);
+  choice4.addEventListener("click", writeQuestion);
+
+  if (secondsLeft === 0) {
+    endQuiz();
+  }
+  if (questionIndex > 4) {
+    choice1.addEventListener("click", endQuiz);
+    choice2.addEventListener("click", endQuiz);
+    choice3.addEventListener("click", endQuiz);
+    choice4.addEventListener("click", endQuiz);
+  }
 }
 
-function playQuiz() {
-  secondsLeft = 10;
-  writeQuestion();
-  startTimer();
-}
+
 
 function startTimer() {
   // Sets interval in variable
-  var timer = setInterval(function() {
+  timer = setInterval(function() {
     secondsLeft--;
-    time.textContent = secondsLeft;
+    time.textContent = secondsLeft + " seconds";
 
-    if (isEnded || secondsLeft === 0) {
-      clearInterval(timer);
-      // TODO: Display score
-    }
   }, 1000);
 }
 
@@ -99,63 +98,72 @@ var q5 = {
 }
 var allQuestions = [q1, q2, q3, q4, q5];
 
-
-// TODO: If all questions are answered, isEnded = true
-
-
-function checkAnswer() {
-  if (userChoice === trueAnswer) {
-    answerCorrect();
-    moveToNext();
-  } else {
-    answerWrong();
-  }
+function playQuiz() {
+  secondsLeft = allQuestions.length * 10;
+  writeQuestion();
+  startTimer();
 }
 
-function resultMessageTimer() {
-  // Displays "CORRECT" or "WRONG" message for 3 seconds
+function endQuiz() {
+  clearInterval(timer);
+  var finalScreen = document.getElementById("final-screen");
+  questionContainer.classList.add("hide");
+  var finalScreen = document.getElementById("final-screen");
+  finalScreen.classList.remove("hide");
+  var finalScore = document.getElementById("final-score");
+  finalScore.textContent = userScore;
+
+  // Hide timer
+  time.classList.add("hide");
+}
+
+// function checkAnswer() {
+//   if (userChoice === trueAnswer) {
+//     answerCorrect();
+//     moveToNext();
+//   } else {
+//     answerWrong();
+//   }
+// }
+
+function resultTimer() {
   var messageTime = 3;
   var messageTimer = setInterval(function() {
     messageTime--;
+  }, 1000);
+}
+
+function checkAnswer() {
+  var resultText = document.getElementById("result");
+  resultText.classList.remove("hide");
 
     // TODO: Display either answerCorrect or answerWrong messages
     if (answerIsWrong) {
-      answerWrong();
+      resultText.textContent = "Wrong Answer. Try again.";
+      secondsLeft - 15;
     } else {
-      answerCorrect();
+      resultText.textContent = "CORRECT!";
+      userScoreTotal + 20;
     }
 
     // After 3 seconds, message will disapear
     if (messageTime === 0) {
-      resultText.style.display = "none";
+      resultText.classList.add("hide");
     } else {
       resultText.style.display = "block";
     }
 
-  }, 1000);
 }
 
-function answerCorrect() {
-  resultText.textContent = "CORRECT!";
-  userScoreTotal + 20;
-}
+// function answerCorrect() {
+//   resultText.textContent = "CORRECT!";
+//   userScoreTotal + 20;
+// }
 
-function answerWrong() {
-  resultText.textContent = "Wrong Answer. Try again.";
-  secondsLeft - 15;
-  userScoreTotal - 10;
-}
-
-function displayFinalScreen() {
-  var finalScreen = document.getElementById("final-screen");
-  var finalScore = document.getElementById("final-score");
-  finalScreen.style.display = "block";
-  finalScore.textContent = userScore;
-}
-
-function moveToNext() {
-  // TODO: Swap current list with next set
-}
+// function answerWrong() {
+//   resultText.textContent = "Wrong Answer. Try again.";
+//   secondsLeft - 15;
+// }
 
 function renderHighScores() {
   // Pull all user scores from storage & parse
@@ -163,7 +171,7 @@ function renderHighScores() {
 
   if (allStoredScores !== null) {
     // Display initials & scores
-    for (i = 0; i > allStoredScores.length; i++) {
+    for (var i = 0; i > allStoredScores.length; i++) {
       var scoreList = allStoredScores[i];
 
       // Make li child for every score pairing from storage
@@ -172,6 +180,7 @@ function renderHighScores() {
     }
   }
 }
+renderHighScores();
 
 function setHighScores() {
   // Object to put scores into ---> send JSON string to local storage
@@ -179,23 +188,19 @@ function setHighScores() {
     initials: initialsInput.value.trim(),
     score: userScore,
     }
-    // Save current score to allStoredScores
-    localStorage.setItem("allStoredScores", JSON.stringify(storeUser));
+  // Save current score to allStoredScores
+  localStorage.setItem("allStoredScores", JSON.stringify(storeUser));
 
 }
 
 // Button that starts the quiz
 var startButton = document.getElementById("start-button");
-
 startButton.addEventListener("click", playQuiz);
 
 // Take user to high scores page upon submission
 var initialsInput = document.getElementById("initials-here");
 var submitButton = document.getElementById("submit");
-submitButton.addEventListener("submit", function() {
-  setHighScores();
-  window.location.href = "/highscores.html";
-});
+submitButton.addEventListener("submit", setHighScores);
 
 // Clears local storage when "clear" button is clicked
 // var clearButton = document.getElementById("clear");
@@ -204,5 +209,4 @@ submitButton.addEventListener("submit", function() {
 //   localStorage.clear();
 // });
 
-// Init pulls latest top scores from local storage on every page load
-init();
+
