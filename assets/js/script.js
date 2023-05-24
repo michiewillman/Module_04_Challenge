@@ -154,25 +154,14 @@ function checkAnswer() {
     }
 }
 
-function renderHighScores() {
-  // Pull all user scores from storage & parse
-  localStorage.getItem("allStoredScores", JSON.stringify(allStoredScores));
+// Button that starts the quiz
+var startButton = document.getElementById("start-button");
+startButton.addEventListener("click", playQuiz);
 
-  if (allStoredScores !== null) {
-    // Display initials & scores
-    for (var i = 0; i > allStoredScores.length; i++) {
-      var scoreList = allStoredScores[i];
-
-      // Make li child for every score pairing from storage
-      var li = document.createElement("li");
-      scoresList.appendChild(li)
-    }
-  }
-}
-renderHighScores();
-
+// Set user score when submitted & redirect to highscores page
 function setHighScores() {
   // Object to put scores into ---> send JSON string to local storage
+  var initialsInput = document.getElementById("initials-here");
   var storeUser = {
     initials: initialsInput.value.trim(),
     score: userScore,
@@ -182,14 +171,11 @@ function setHighScores() {
 
 }
 
-// Button that starts the quiz
-var startButton = document.getElementById("start-button");
-startButton.addEventListener("click", playQuiz);
-
-// Take user to high scores page upon submission
-var initialsInput = document.getElementById("initials-here");
 var submitButton = document.getElementById("submit");
-submitButton.addEventListener("submit", setHighScores);
+submitButton.addEventListener("submit", function() {
+  setHighScores();
+  window.location.href = "highscores.html";
+});
 
 
 
