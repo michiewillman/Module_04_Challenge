@@ -191,11 +191,5 @@ var initialsInput = document.getElementById("initials-here");
 var submitButton = document.getElementById("submit");
 submitButton.addEventListener("submit", setHighScores);
 
-// Clears local storage when "clear" button is clicked
-// var clearButton = document.getElementById("clear");
-
-// clearButton.addEventListener("click", function() {
-//   localStorage.clear();
-// });
 
 
