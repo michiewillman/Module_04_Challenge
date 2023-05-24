@@ -1,5 +1,4 @@
 var time = document.getElementById("time");
-var questionTitle = document.getElementById("question-title");
 var questionContainer = document.getElementById("questions");
 var scoresList = document.getElementById("highscores");
 
@@ -18,6 +17,7 @@ function writeQuestion() {
 
   // Hide start screen container, Show questions/answers container
   var startScreen = document.getElementById("start-screen");
+  var questionTitle = document.getElementById("question-title");
   startScreen.classList.add("hide");
   questionContainer.classList.remove("hide");
   // Display a question
@@ -33,23 +33,21 @@ function writeQuestion() {
   questionIndex++;
 
   // When user clicks on an answer, write next question
-  choice1.addEventListener("click", writeQuestion);
-  choice2.addEventListener("click", writeQuestion);
-  choice3.addEventListener("click", writeQuestion);
-  choice4.addEventListener("click", writeQuestion);
+  answer1.addEventListener("click", writeQuestion);
+  answer2.addEventListener("click", writeQuestion);
+  answer3.addEventListener("click", writeQuestion);
+  answer4.addEventListener("click", writeQuestion);
 
   if (secondsLeft === 0) {
     endQuiz();
   }
   if (questionIndex > 4) {
-    choice1.addEventListener("click", endQuiz);
-    choice2.addEventListener("click", endQuiz);
-    choice3.addEventListener("click", endQuiz);
-    choice4.addEventListener("click", endQuiz);
+    answer1.addEventListener("click", endQuiz);
+    answer2.addEventListener("click", endQuiz);
+    answer3.addEventListener("click", endQuiz);
+    answer4.addEventListener("click", endQuiz);
   }
 }
-
-
 
 function startTimer() {
   // Sets interval in variable
@@ -117,15 +115,6 @@ function endQuiz() {
   time.classList.add("hide");
 }
 
-// function checkAnswer() {
-//   if (userChoice === trueAnswer) {
-//     answerCorrect();
-//     moveToNext();
-//   } else {
-//     answerWrong();
-//   }
-// }
-
 function resultTimer() {
   var messageTime = 3;
   var messageTimer = setInterval(function() {
@@ -171,6 +160,7 @@ function setHighScores() {
 
 }
 
+// TODO: MAKE THIS SHIT WORK
 var submitButton = document.getElementById("submit");
 submitButton.addEventListener("submit", function() {
   setHighScores();
