@@ -137,33 +137,22 @@ function checkAnswer() {
   var resultText = document.getElementById("result");
   resultText.classList.remove("hide");
 
-    // TODO: Display either answerCorrect or answerWrong messages
-    if (answerIsWrong) {
-      resultText.textContent = "Wrong Answer. Try again.";
-      secondsLeft - 15;
-    } else {
-      resultText.textContent = "CORRECT!";
-      userScoreTotal + 20;
-    }
+  // Display result of answer selection
+  if (answerCorrect) {
+    resultText.textContent = "CORRECT!";
+    userScoreTotal + 20;
+  } else {
+    resultText.textContent = "Wrong Answer. Try again.";
+    secondsLeft - 15;
+  }
 
-    // After 3 seconds, message will disapear
-    if (messageTime === 0) {
-      resultText.classList.add("hide");
-    } else {
-      resultText.style.display = "block";
+  // After 3 seconds, message will disapear
+  if (messageTime === 0) {
+    resultText.classList.add("hide");
+  } else {
+    resultText.classList.remove("hide");
     }
-
 }
-
-// function answerCorrect() {
-//   resultText.textContent = "CORRECT!";
-//   userScoreTotal + 20;
-// }
-
-// function answerWrong() {
-//   resultText.textContent = "Wrong Answer. Try again.";
-//   secondsLeft - 15;
-// }
 
 function renderHighScores() {
   // Pull all user scores from storage & parse
