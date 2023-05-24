@@ -24,11 +24,17 @@
           limit alotted in the top-right corner. Each incorrect answer will result in a reduction of your time by 15 seconds.
         </p>
         <button id="start-button">START QUIZ</button>
-      </section>
+      </div>
 
       <div id="questions" class="hide">
         <h2 id="question-title"></h2>
-        <div id="choices" class="choices"></div>
+        <div id="choices" class="choices">
+          <button class="answer" id="choice1"></button>
+          <button class="answer" id="choice2"></button>
+          <button class="answer" id="choice3"></button>
+          <button class="answer" id="choice4"></button>
+        </div>
+
       </div>
 
       <div id="final-screen" class="hide">
@@ -42,6 +48,7 @@
 
       <div id="result" class="result hide"></div>
     </div>
+    </section>
 
     <script src="assets/js/script.js"></script>
   </body>
