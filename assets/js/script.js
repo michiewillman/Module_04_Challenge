@@ -8,6 +8,44 @@ var timer;
 var secondsLeft;
 var questionIndex = 0;
 
+// All Questions + Their Answers as objects
+var q1 = {
+  question: "Commonly used data types DO NOT include:",
+  a1: "1. strings",
+  a2: "2. alerts",
+  a3: "3. booleans",
+  a4: "4. numbers",
+}
+var q2 = {
+  question: "The condition in an if / else statement is encolsed within ___.",
+  a1: "1. curly brackets",
+  a2: "2. quotes",
+  a3: "3. parentheses",
+  a4: "4. square brackets"
+}
+var q3 = {
+  question: "Arrays in JavaScript can be used to store:",
+  a1: "1. numbers and strings",
+  a2: "2. other arrays",
+  a3: "3. booleans",
+  a4: "4. all of the above"
+}
+var q4 = {
+  question: "String values must be enclosed within ___ when being assigned to variables.",
+  a1: "1. commas",
+  a2: "2. curly brackets",
+  a3: "3. quotes",
+  a4: "4. parentheses"
+}
+var q5 = {
+  question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+  a1: "1. JavaScript",
+  a2: "2. terminal / bash",
+  a3: "3. for loops",
+  a4: "4. console.log"
+}
+var allQuestions = [q1, q2, q3, q4, q5];
+
 function writeQuestion() {
   // Sets answer values
   var answer1 = document.getElementById("choice1");
@@ -58,44 +96,6 @@ function startTimer() {
   }, 1000);
 }
 
-// All Questions + Their Answers as objects
-var q1 = {
-  question: "Commonly used data types DO NOT include:",
-  a1: "1. strings",
-  a2: "2. alerts",
-  a3: "3. booleans",
-  a4: "4. numbers",
-}
-var q2 = {
-  question: "The condition in an if / else statement is encolsed within ___.",
-  a1: "1. curly brackets",
-  a2: "2. quotes",
-  a3: "3. parentheses",
-  a4: "4. square brackets"
-}
-var q3 = {
-  question: "Arrays in JavaScript can be used to store:",
-  a1: "1. numbers and strings",
-  a2: "2. other arrays",
-  a3: "3. booleans",
-  a4: "4. all of the above"
-}
-var q4 = {
-  question: "String values must be enclosed within ___ when being assigned to variables.",
-  a1: "1. commas",
-  a2: "2. curly brackets",
-  a3: "3. quotes",
-  a4: "4. parentheses"
-}
-var q5 = {
-  question: "A very useful tool used during development and debugging for printing content to the debugger is:",
-  a1: "1. JavaScript",
-  a2: "2. terminal / bash",
-  a3: "3. for loops",
-  a4: "4. console.log"
-}
-var allQuestions = [q1, q2, q3, q4, q5];
-
 function playQuiz() {
   secondsLeft = allQuestions.length * 10;
   writeQuestion();
@@ -127,7 +127,7 @@ function checkAnswer() {
   resultText.classList.remove("hide");
 
   // Display result of answer selection
-  if (answerCorrect) {
+  if (correctAnswer) {
     resultText.textContent = "CORRECT!";
     userScoreTotal + 20;
   } else {
@@ -165,6 +165,7 @@ var submitButton = document.getElementById("submit");
 submitButton.addEventListener("submit", function() {
   setHighScores();
   window.location.href = "highscores.html";
+  console.log("submitted");
 });
 
 
