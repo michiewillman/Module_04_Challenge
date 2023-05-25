@@ -86,10 +86,6 @@ li {
   padding: 5px;
 }
 
-li:nth-child(odd) {
-  background-color: #f3edfc;
-}
-
 .hide {
   display: none;
 }
