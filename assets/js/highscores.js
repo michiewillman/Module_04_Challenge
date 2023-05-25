@@ -22,6 +22,7 @@ renderHighScores();
 // Clears local storage when "clear" button is clicked
 var clearButton = document.getElementById("clear");
 
-clearButton.addEventListener("click", function() {
+clearButton.addEventListener("click", function(event) {
+  event.preventDefault();
   localStorage.clear();
 });

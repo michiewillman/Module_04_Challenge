@@ -58,14 +58,13 @@ var answer2 = document.getElementById("choice2");
 var answer3 = document.getElementById("choice3");
 var answer4 = document.getElementById("choice4");
 
-  // When user clicks on an answer, write next question
-  answer1.addEventListener("click", checkAnswer);
-  answer2.addEventListener("click", checkAnswer);
-  answer3.addEventListener("click", checkAnswer);
-  answer4.addEventListener("click", checkAnswer);
+// When user clicks on an answer, write next question
+answer1.addEventListener("click", checkAnswer);
+answer2.addEventListener("click", checkAnswer);
+answer3.addEventListener("click", checkAnswer);
+answer4.addEventListener("click", checkAnswer);
 
 function writeQuestion() {
-
   // Hide start screen container, Show questions/answers container
   var startScreen = document.getElementById("start-screen");
   var questionTitle = document.getElementById("question-title");
@@ -84,10 +83,7 @@ function writeQuestion() {
   questionIndex++;
 
   if (questionIndex > 4) {
-    answer1.addEventListener("click", endQuiz);
-    answer2.addEventListener("click", endQuiz);
-    answer3.addEventListener("click", endQuiz);
-    answer4.addEventListener("click", endQuiz);
+    endQuiz();
   }
 }
 
@@ -113,7 +109,7 @@ function endQuiz() {
   var finalScreen = document.getElementById("final-screen");
   finalScreen.classList.remove("hide");
   var finalScore = document.getElementById("final-score");
-  finalScore.textContent = userScore;
+  finalScore.textContent = userScore + "%";
 
   if (secondsLeft === 0) {
     endQuiz();
@@ -130,7 +126,7 @@ function checkAnswer(event) {
 
   if (target.dataset.name === currentQuestion.answer) {
     resultText.textContent = "CORRECT!";
-    userScore + 20;
+    userScore += 20;
   } else {
     resultText.textContent = "Wrong Answer. Try again.";
     secondsLeft - 15;
@@ -142,25 +138,25 @@ function checkAnswer(event) {
 var startButton = document.getElementById("start-button");
 startButton.addEventListener("click", playQuiz);
 
-// Set user score when submitted & redirect to highscores page
-function setHighScores() {
-  // Object to put scores into ---> send JSON string to local storage
+function setHighscores() {
   var initialsInput = document.getElementById("initials-here");
-  var storeUser = {
+  // Object to put scores into ---> send JSON string to local storage
+  var newScore = {
     initials: initialsInput.value.trim(),
     score: userScore,
     }
-  // Save current score to allStoredScores
-  localStorage.setItem("allStoredScores", JSON.stringify(storeUser));
-
+    // Save current score to allStoredScores
+  localStorage.setItem("allStoredScores", JSON.stringify(newScore));
+  // window.location.href = "highscores.html";
+  console.log("submitted");
 }
 
+// Set user score when submitted & redirect to highscores page
 // TODO: MAKE THIS SHIT WORK
 var submitButton = document.getElementById("submit");
-submitButton.addEventListener("submit", function() {
-  setHighScores();
-  window.location.href = "highscores.html";
-  console.log("submitted");
+submitButton.addEventListener("click", function(event) {
+  event.preventDefault();
+  setHighscores();
 });
 
 
