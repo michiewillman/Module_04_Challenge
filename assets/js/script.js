@@ -52,12 +52,19 @@ var questionIndex = 0;
 var allQuestions = [q1, q2, q3, q4, q5];
 var currentQuestion;
 
+// Sets answer values
+var answer1 = document.getElementById("choice1");
+var answer2 = document.getElementById("choice2");
+var answer3 = document.getElementById("choice3");
+var answer4 = document.getElementById("choice4");
+
+  // When user clicks on an answer, write next question
+  answer1.addEventListener("click", checkAnswer);
+  answer2.addEventListener("click", checkAnswer);
+  answer3.addEventListener("click", checkAnswer);
+  answer4.addEventListener("click", checkAnswer);
+
 function writeQuestion() {
-  // Sets answer values
-  var answer1 = document.getElementById("choice1");
-  var answer2 = document.getElementById("choice2");
-  var answer3 = document.getElementById("choice3");
-  var answer4 = document.getElementById("choice4");
 
   // Hide start screen container, Show questions/answers container
   var startScreen = document.getElementById("start-screen");
@@ -76,15 +83,6 @@ function writeQuestion() {
   // Add to index at the end so it cycles through questions
   questionIndex++;
 
-  // When user clicks on an answer, write next question
-  answer1.addEventListener("click", writeQuestion);
-  answer2.addEventListener("click", writeQuestion);
-  answer3.addEventListener("click", writeQuestion);
-  answer4.addEventListener("click", writeQuestion);
-
-  if (secondsLeft === 0) {
-    endQuiz();
-  }
   if (questionIndex > 4) {
     answer1.addEventListener("click", endQuiz);
     answer2.addEventListener("click", endQuiz);
@@ -117,6 +115,10 @@ function endQuiz() {
   var finalScore = document.getElementById("final-score");
   finalScore.textContent = userScore;
 
+  if (secondsLeft === 0) {
+    endQuiz();
+  }
+
   // Hide timer
   time.classList.add("hide");
 }
@@ -133,6 +135,7 @@ function checkAnswer(event) {
     resultText.textContent = "Wrong Answer. Try again.";
     secondsLeft - 15;
   }
+  writeQuestion();
 }
 
 // Button that starts the quiz
