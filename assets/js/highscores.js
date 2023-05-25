@@ -9,7 +9,8 @@ function renderHighScores() {
   for (var i = 0; i < storedScores.length; i++) {
     var topScore = document.createElement("li");
     scoreList.appendChild(topScore);
-    topScore.textContent = storedScores[];
+    var player = storedScores[i].initials;
+    topScore.textContent = player.toUpperCase() + " - " + storedScores[i].score;
   }
 }
 
