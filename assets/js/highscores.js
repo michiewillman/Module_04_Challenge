@@ -1,5 +1,4 @@
 var scoreList = document.getElementById("highscores");
-let highScoresTag = '';
 
 // Set function to pull scores from local storage
 function renderHighScores() {
@@ -22,4 +21,5 @@ var clearButton = document.getElementById("clear");
 clearButton.addEventListener("click", function(event) {
   event.preventDefault();
   localStorage.clear();
+  location.reload();
 });
