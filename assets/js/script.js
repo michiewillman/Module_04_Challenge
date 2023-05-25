@@ -108,13 +108,13 @@ function endQuiz() {
   questionContainer.classList.add("hide");
   var finalScreen = document.getElementById("final-screen");
   finalScreen.classList.remove("hide");
+
+  // Hide timer & result text
+  time.classList.add("hide");
+  resultText.textContent = "";
+
   var finalScore = document.getElementById("final-score");
   finalScore.textContent = userScore + "%";
-
-
-
-  // Hide timer
-  time.classList.add("hide");
 }
 
 function checkAnswer(event) {
@@ -122,13 +122,20 @@ function checkAnswer(event) {
   resultText.classList.remove("hide");
   var target = event.target;
 
+
+
   if (target.dataset.name === currentQuestion.answer) {
     resultText.textContent = "CORRECT!";
     userScore += 20;
   } else {
-    resultText.textContent = "Wrong Answer. Try again.";
-    secondsLeft - 15;
+    resultText.textContent = "Wrong Answer. 5 seconds subtracted from your time.";
+    secondsLeft -= 5;
   }
+
+  setTimeout( function() {
+    resultText.textContent = "";
+  } , 3000);
+
   writeQuestion();
 }
 
@@ -152,11 +159,11 @@ function setHighscores() {
 }
 
 // Set user score when submitted & redirect to highscores page
-// TODO: MAKE THIS SHIT WORK
 var submitButton = document.getElementById("submit");
 submitButton.addEventListener("click", function(event) {
   event.preventDefault();
   setHighscores();
+  window.location.href = "highscores.html";
 });
 
 
