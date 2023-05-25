@@ -1,11 +1,17 @@
 var time = document.getElementById("time");
 var questionContainer = document.getElementById("questions");
 var scoresList = document.getElementById("highscores");
-
-var allStoredScores = [];
+var resultText = document.getElementById("result");
 var userScore = 0; 
 var timer;
 var secondsLeft;
+
+// Set array to value of local storage "allStoredScores"
+// If local storage is empty, set an empty array to push to
+var allStoredScores = JSON.parse(localStorage.getItem("allStoredScores"));
+if (localStorage.getItem("allStoredScores") === null) {
+  allStoredScores = [];
+}
 
 // All Questions + Their Answers as objects
 var q1 = {
@@ -64,6 +70,22 @@ answer2.addEventListener("click", checkAnswer);
 answer3.addEventListener("click", checkAnswer);
 answer4.addEventListener("click", checkAnswer);
 
+
+function startTimer() {
+  // Sets interval in variable
+  timer = setInterval(function() {
+    secondsLeft--;
+    time.textContent = secondsLeft + " seconds";
+
+  }, 1000);
+}
+
+function playQuiz() {
+  secondsLeft = allQuestions.length * 10;
+  writeQuestion();
+  startTimer();
+}
+
 function writeQuestion() {
   // Hide start screen container, Show questions/answers container
   var startScreen = document.getElementById("start-screen");
@@ -87,19 +109,23 @@ function writeQuestion() {
   }
 }
 
-function startTimer() {
-  // Sets interval in variable
-  timer = setInterval(function() {
-    secondsLeft--;
-    time.textContent = secondsLeft + " seconds";
+function checkAnswer(event) {
+  resultText.classList.remove("hide");
+  var target = event.target;
 
-  }, 1000);
-}
+  if (target.dataset.name === currentQuestion.answer) {
+    resultText.textContent = "CORRECT!";
+    userScore += 20;
+  } else {
+    resultText.textContent = "Wrong Answer. 5 seconds subtracted from your time.";
+    secondsLeft -= 5;
+  }
 
-function playQuiz() {
-  secondsLeft = allQuestions.length * 10;
+  setTimeout( function() {
+    resultText.textContent = "";
+  } , 3000);
+
   writeQuestion();
-  startTimer();
 }
 
 function endQuiz() {
@@ -115,28 +141,6 @@ function endQuiz() {
 
   var finalScore = document.getElementById("final-score");
   finalScore.textContent = userScore + "%";
-}
-
-function checkAnswer(event) {
-  var resultText = document.getElementById("result");
-  resultText.classList.remove("hide");
-  var target = event.target;
-
-
-
-  if (target.dataset.name === currentQuestion.answer) {
-    resultText.textContent = "CORRECT!";
-    userScore += 20;
-  } else {
-    resultText.textContent = "Wrong Answer. 5 seconds subtracted from your time.";
-    secondsLeft -= 5;
-  }
-
-  setTimeout( function() {
-    resultText.textContent = "";
-  } , 3000);
-
-  writeQuestion();
 }
 
 // Button that starts the quiz
