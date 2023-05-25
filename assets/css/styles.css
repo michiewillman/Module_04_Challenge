@@ -1,9 +1,8 @@
 :root {
-  --dark: #3654A9;
+  --dark: #273e7c;
   --light: #ffffff;
   --bright: #f20242;
 }
-/* /* ROOT VARIABLES NOT WORKING ? */
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -23,7 +22,7 @@ a {
 }
 
 a:hover {
-  color: #273e7c;
+  color: #3654A9;
   outline: var(--light);
 }
 
