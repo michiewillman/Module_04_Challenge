@@ -82,7 +82,7 @@ function writeQuestion() {
   // Add to index at the end so it cycles through questions
   questionIndex++;
 
-  if (questionIndex > 4) {
+  if (secondsLeft === 0 || questionIndex >= allQuestions.length) {
     endQuiz();
   }
 }
@@ -111,9 +111,7 @@ function endQuiz() {
   var finalScore = document.getElementById("final-score");
   finalScore.textContent = userScore + "%";
 
-  if (secondsLeft === 0) {
-    endQuiz();
-  }
+
 
   // Hide timer
   time.classList.add("hide");
@@ -144,7 +142,7 @@ function setHighscores() {
   var newScore = {
     initials: initialsInput.value.trim(),
     score: userScore,
-    }
+    };
   // Save current score to allStoredScores array
   allStoredScores.push(newScore);
   // Save array of all scores to local storage
