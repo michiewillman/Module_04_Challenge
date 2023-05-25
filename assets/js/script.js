@@ -145,8 +145,10 @@ function setHighscores() {
     initials: initialsInput.value.trim(),
     score: userScore,
     }
-    // Save current score to allStoredScores
-  localStorage.setItem("allStoredScores", JSON.stringify(newScore));
+  // Save current score to allStoredScores array
+  allStoredScores.push(newScore);
+  // Save array of all scores to local storage
+  localStorage.setItem("allStoredScores", JSON.stringify(allStoredScores));
   // window.location.href = "highscores.html";
   console.log("submitted");
 }

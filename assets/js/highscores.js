@@ -3,12 +3,13 @@ var scoreList = document.getElementById("highscores");
 // Set function to pull scores from local storage
 function renderHighScores() {
   // Pull all user scores from storage & parse
-  var highScores = JSON.parse(localStorage.getItem("allStoredScores"));
+  var storedScores = JSON.parse(localStorage.getItem("allStoredScores"));
+  console.log(storedScores);
 
-  for (var i = 0; i < localStorage.length; i++) {
-    var userEach = document.createElement("li");
-    scoreList.appendChild(userEach);
-    userEach.textContent = highScores.initials + highScores.score;
+  for (var i = 0; i < storedScores.length; i++) {
+    var topScore = document.createElement("li");
+    scoreList.appendChild(topScore);
+    topScore.textContent = storedScores[];
   }
 }
 
