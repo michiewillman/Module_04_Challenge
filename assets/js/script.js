@@ -6,7 +6,6 @@ var allStoredScores = [];
 var userScore = 0; 
 var timer;
 var secondsLeft;
-var questionIndex = 0;
 
 // All Questions + Their Answers as objects
 var q1 = {
@@ -15,36 +14,43 @@ var q1 = {
   a2: "2. alerts",
   a3: "3. booleans",
   a4: "4. numbers",
+  answer: "a2"
 }
 var q2 = {
-  question: "The condition in an if / else statement is encolsed within ___.",
+  question: "The condition in an if / else statement is enclosed within ___.",
   a1: "1. curly brackets",
   a2: "2. quotes",
   a3: "3. parentheses",
-  a4: "4. square brackets"
+  a4: "4. square brackets",
+  answer: "a3"
 }
 var q3 = {
   question: "Arrays in JavaScript can be used to store:",
   a1: "1. numbers and strings",
   a2: "2. other arrays",
   a3: "3. booleans",
-  a4: "4. all of the above"
+  a4: "4. all of the above",
+  answer: "a4",
 }
 var q4 = {
   question: "String values must be enclosed within ___ when being assigned to variables.",
   a1: "1. commas",
   a2: "2. curly brackets",
   a3: "3. quotes",
-  a4: "4. parentheses"
+  a4: "4. parentheses",
+  answer: "a3"
 }
 var q5 = {
   question: "A very useful tool used during development and debugging for printing content to the debugger is:",
-  a1: "1. JavaScript",
+  a1: "1. console.log",
   a2: "2. terminal / bash",
   a3: "3. for loops",
-  a4: "4. console.log"
+  a4: "4. JavaScript",
+  answer: "a1"
 }
+var questionIndex = 0;
 var allQuestions = [q1, q2, q3, q4, q5];
+var currentQuestion;
 
 function writeQuestion() {
   // Sets answer values
@@ -59,7 +65,7 @@ function writeQuestion() {
   startScreen.classList.add("hide");
   questionContainer.classList.remove("hide");
   // Display a question
-  var currentQuestion = allQuestions[questionIndex];
+  currentQuestion = allQuestions[questionIndex];
   questionTitle.textContent = currentQuestion.question;
   // Display its answers
   answer1.textContent = currentQuestion.a1;
@@ -115,32 +121,18 @@ function endQuiz() {
   time.classList.add("hide");
 }
 
-function resultTimer() {
-  var messageTime = 3;
-  var messageTimer = setInterval(function() {
-    messageTime--;
-  }, 1000);
-}
-
-function checkAnswer() {
+function checkAnswer(event) {
   var resultText = document.getElementById("result");
   resultText.classList.remove("hide");
+  var target = event.target;
 
-  // Display result of answer selection
-  if (correctAnswer) {
+  if (target.dataset.name === currentQuestion.answer) {
     resultText.textContent = "CORRECT!";
-    userScoreTotal + 20;
+    userScore + 20;
   } else {
     resultText.textContent = "Wrong Answer. Try again.";
     secondsLeft - 15;
   }
-
-  // After 3 seconds, message will disapear
-  if (messageTime === 0) {
-    resultText.classList.add("hide");
-  } else {
-    resultText.classList.remove("hide");
-    }
 }
 
 // Button that starts the quiz
