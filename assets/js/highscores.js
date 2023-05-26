@@ -12,10 +12,10 @@ function renderHighScores() {
     var player = storedScores[i].initials;
     topScore.textContent = player.toUpperCase() + " - " + storedScores[i].score;
   }
-
   if (storedScores === null) {
     return;
   }
+
 }
 
 // Call page to automatically pull scores from local storage

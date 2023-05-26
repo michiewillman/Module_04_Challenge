@@ -6,13 +6,6 @@ var userScore = 0;
 var timer;
 var secondsLeft;
 
-// Set array to value of local storage "allStoredScores"
-// If local storage is empty, set an empty array to push to
-var allStoredScores = JSON.parse(localStorage.getItem("allStoredScores"));
-if (localStorage.getItem("allStoredScores") === null) {
-  allStoredScores = [];
-}
-
 // All Questions + Their Answers as objects
 var q1 = {
   question: "Commonly used data types DO NOT include:",
@@ -63,13 +56,11 @@ var answer1 = document.getElementById("choice1");
 var answer2 = document.getElementById("choice2");
 var answer3 = document.getElementById("choice3");
 var answer4 = document.getElementById("choice4");
-
 // When user clicks on an answer, write next question
 answer1.addEventListener("click", checkAnswer);
 answer2.addEventListener("click", checkAnswer);
 answer3.addEventListener("click", checkAnswer);
 answer4.addEventListener("click", checkAnswer);
-
 
 function startTimer() {
   // Sets interval in variable
@@ -88,6 +79,7 @@ function playQuiz() {
 
 function writeQuestion() {
   // Hide start screen container, Show questions/answers container
+
   var startScreen = document.getElementById("start-screen");
   var questionTitle = document.getElementById("question-title");
   startScreen.classList.add("hide");
@@ -148,6 +140,12 @@ var startButton = document.getElementById("start-button");
 startButton.addEventListener("click", playQuiz);
 
 function setHighscores() {
+  // Set array to value of local storage "allStoredScores"
+  // If local storage is empty, set an empty array to push to
+  var allStoredScores = JSON.parse(localStorage.getItem("allStoredScores"));
+  if (localStorage.getItem("allStoredScores") === null) {
+    allStoredScores = [];
+  }
   var initialsInput = document.getElementById("initials-here");
   // Object to put scores into ---> send JSON string to local storage
   var newScore = {
