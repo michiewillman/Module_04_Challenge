@@ -4,6 +4,10 @@
 
 This assignment was to create a fully-functioning coding quiz for a user who may need to be tested on their coding knowledge. Passing an assessment of your knowledge shows potential employers that you have experience with the terms and technology of web development.
 
+We were required to code this application to showcase a timed series of questions and answers that showed a result of correct or wrong answer when clicked. When the user clicks an answer, the next question and its answer choices will be written to the page. Points are rewarded for correct answers, while seconds-remaining are penalized for wrong answers.
+
+At the end, the user's final score is displayed and they are able to input their initials in order to be added to the Top Scores page. The user can then clear the storage of scores if they wish.
+
 ## Mockup
 
 Mockup of the deployed application's start screen:
