@@ -76,7 +76,7 @@ function startTimer() {
 }
 
 function playQuiz() {
-  secondsLeft = allQuestions.length * 10;
+  secondsLeft = allQuestions.length * 2;
   writeQuestion();
   startTimer();
 }
@@ -116,7 +116,7 @@ function checkAnswer(event) {
 
   // Timer for message that displays the answer result
   setTimeout( function() {
-    resultText.textContent = "";
+    resultText.classList.add("hide");
   } , 2000);
 
   // End the quiz after all questions are asked
@@ -135,8 +135,9 @@ function endQuiz() {
   finalScreen.classList.remove("hide");
 
   // Hide timer & result text
-  time.classList.add("hide");
-  resultText.textContent = "";
+  var timeContainer = document.querySelector(".timer");
+  timeContainer.classList.add("hide");
+  resultText.classList.add("hide");
 
   var finalScore = document.getElementById("final-score");
   finalScore.textContent = userScore + "%";
