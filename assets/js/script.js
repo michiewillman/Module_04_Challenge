@@ -68,13 +68,18 @@ function startTimer() {
     secondsLeft--;
     time.textContent = secondsLeft + " seconds";
 
+    if (secondsLeft === 0 ) {
+      endQuiz();
+      }
+
   }, 1000);
 }
 
 function playQuiz() {
-  secondsLeft = allQuestions.length * 10;
+  secondsLeft = allQuestions.length * 3;
   writeQuestion();
   startTimer();
+
 }
 
 function writeQuestion() {
@@ -84,10 +89,7 @@ function writeQuestion() {
     startScreen.classList.add("hide");
     questionContainer.classList.remove("hide");
 
-    if (secondsLeft === 0 || questionIndex === allQuestions.length) {
-      endQuiz();
-      return;
-    } else {
+
     // Display a question
     currentQuestion = allQuestions[questionIndex];
     questionTitle.textContent = currentQuestion.question;
@@ -100,7 +102,6 @@ function writeQuestion() {
     // Add to index at the end so it cycles through questions
     questionIndex++;
     return;
-  }
 }
 
 function checkAnswer(event) {
@@ -119,6 +120,11 @@ function checkAnswer(event) {
     resultText.textContent = "";
   } , 2000);
 
+  if (questionIndex === allQuestions.length) {
+    endQuiz();
+    return;
+  } 
+  
   writeQuestion();
 }
 
