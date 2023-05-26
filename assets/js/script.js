@@ -79,25 +79,27 @@ function playQuiz() {
 
 function writeQuestion() {
   // Hide start screen container, Show questions/answers container
+    var startScreen = document.getElementById("start-screen");
+    var questionTitle = document.getElementById("question-title");
+    startScreen.classList.add("hide");
+    questionContainer.classList.remove("hide");
 
-  var startScreen = document.getElementById("start-screen");
-  var questionTitle = document.getElementById("question-title");
-  startScreen.classList.add("hide");
-  questionContainer.classList.remove("hide");
-  // Display a question
-  currentQuestion = allQuestions[questionIndex];
-  questionTitle.textContent = currentQuestion.question;
-  // Display its answers
-  answer1.textContent = currentQuestion.a1;
-  answer2.textContent = currentQuestion.a2;
-  answer3.textContent = currentQuestion.a3;
-  answer4.textContent = currentQuestion.a4;
+    if (secondsLeft === 0 || questionIndex === allQuestions.length) {
+      endQuiz();
+      return;
+    } else {
+    // Display a question
+    currentQuestion = allQuestions[questionIndex];
+    questionTitle.textContent = currentQuestion.question;
+    // Display its answers
+    answer1.textContent = currentQuestion.a1;
+    answer2.textContent = currentQuestion.a2;
+    answer3.textContent = currentQuestion.a3;
+    answer4.textContent = currentQuestion.a4;
 
-  // Add to index at the end so it cycles through questions
-  questionIndex++;
-
-  if (secondsLeft === 0 || questionIndex >= allQuestions.length) {
-    endQuiz();
+    // Add to index at the end so it cycles through questions
+    questionIndex++;
+    return;
   }
 }
 
@@ -115,7 +117,7 @@ function checkAnswer(event) {
 
   setTimeout( function() {
     resultText.textContent = "";
-  } , 3000);
+  } , 2000);
 
   writeQuestion();
 }
