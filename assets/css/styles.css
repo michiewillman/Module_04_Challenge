@@ -15,6 +15,7 @@ header {
   margin-bottom: 90px;
 }
 
+/* All links */
 a {
   color: var(--dark);
   text-decoration: none;
@@ -26,6 +27,7 @@ a:hover {
   outline: var(--light);
 }
 
+/* All buttons */
 button {
   display: inline-block;
   margin: 5px;
@@ -45,12 +47,14 @@ button:hover {
   outline: 1px solid white;
 }
 
+/* Button on top-left to view highscores.html */
 #highscores-btn {
   position: absolute;
   top: 30px;
   left: 30px;
 }
 
+/* Top-right timer container */
 .timer {
   color: var(--light);
   background-color: var(--bright);
@@ -67,6 +71,8 @@ button:hover {
   border-radius: 20px;
   padding: 5%;
 }
+
+/* All answers are buttons in the HTML */
 .choices button {
   display: block;
 }
@@ -86,14 +92,17 @@ li {
   padding: 5px;
 }
 
+/* Automatically hidden. This class to remove/add as you navigate through quiz */
 .hide {
   display: none;
 }
 
+/* Main screen on page load to start the quiz using start button */
 #start-screen {
   text-align: center;
 }
 
+/* Message that shows after user clicks an answer */
 .result {
   font-style: italic;
   font-size: 120%;

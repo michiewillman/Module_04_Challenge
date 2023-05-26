@@ -10,13 +10,16 @@
 
   <body>
     <header>
+      <!-- Button on top-left of screen to view highscores -->
       <div id="highscores-btn"><a href="highscores.html">View Top Scores</a>
       </div>
+      <!-- Timer is the whole div, time is the text -->
       <div class="timer">Time Left: <span id="time">0</span>
       </div>
     </header>
 
     <section class="main-container">
+      <!-- start screen to hide when showing questions or final screen -->
       <div id="start-screen">
         <h1>Coding Assessment</h1>
         <p>
@@ -26,6 +29,7 @@
         <button id="start-button">START QUIZ</button>
       </div>
 
+      <!-- Question screen to hide when showing start screen or final screen. Automatically hidden on page load -->
       <div id="questions" class="hide">
         <h2 id="question-title"></h2>
         <div id="choices" class="choices">
@@ -37,6 +41,7 @@
 
       </div>
 
+      <!-- Final screen that shows score and input form to submit score/initials to local storage -->
       <div id="final-screen" class="hide">
         <h2>You have completed the quiz!</h2>
         <p>Your final score is <span id="final-score"></span>.</p>
