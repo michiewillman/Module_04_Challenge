@@ -8,14 +8,19 @@ This assignment was to create a fully-functioning coding quiz for a user who may
 
 Mockup of the deployed application's start screen:
 
-![Password Generator application that uses a box to display a user's random password and a Generate Password button.](./assets/mockups/)
+![Screenshot of the Coding Quiz start screen](./assets/mockups/start-screen.png)
 
 Mockup of one of the question & answer screens:
 
+![Screenshot of an example of a question and answer screen in the application](./assets/mockups/question-ex.png)
 
 Mockup of the final screen:
 
+![Screenshot of the Coding Quiz final screen](./assets/mockups/final-screen.png)
 
+Mockup of the highscores page:
+
+![Screenshot of the highscores.html page](./assets/mockups/highscores.png)
 
 ## Deployment
 

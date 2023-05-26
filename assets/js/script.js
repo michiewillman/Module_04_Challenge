@@ -76,7 +76,7 @@ function startTimer() {
 }
 
 function playQuiz() {
-  secondsLeft = allQuestions.length * 3;
+  secondsLeft = allQuestions.length * 10;
   writeQuestion();
   startTimer();
 
