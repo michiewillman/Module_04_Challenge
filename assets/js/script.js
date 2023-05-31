@@ -68,7 +68,7 @@ function startTimer() {
     secondsLeft--;
     time.textContent = secondsLeft + " seconds";
 
-    if (secondsLeft === 0 ) {
+    if (secondsLeft <= 0 ) {
       endQuiz();
       }
 
@@ -76,7 +76,7 @@ function startTimer() {
 }
 
 function playQuiz() {
-  secondsLeft = allQuestions.length * 2;
+  secondsLeft = allQuestions.length * 10;
   writeQuestion();
   startTimer();
 }
